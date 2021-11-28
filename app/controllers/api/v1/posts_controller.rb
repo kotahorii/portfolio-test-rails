@@ -8,7 +8,7 @@ class Api::V1::PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
-    # post.user_id = current_api_v1_user.id
+    post.user_id = current_api_v1_user.id
     if post.save
       render json: post
     else
