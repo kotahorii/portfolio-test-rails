@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: %i[show update]
+  before_action :set_user, only: %i[update]
 
   def index
     users = User.all.order(created_at: 'DESC')
@@ -9,6 +9,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     @user.name = user_params[:name]
     @user.introduction = user_params[:introduction]
+    @user.prefecture = user_params[:prefecture]
     @user.image = user_params[:image] if user_params[:image] != ''
 
     if @user.save
@@ -25,6 +26,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:name, :introduction, :image)
+    params.permit(:name, :introduction, :prefecture, :image)
   end
 end
