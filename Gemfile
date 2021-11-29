@@ -48,4 +48,3 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'httpclient'
-
