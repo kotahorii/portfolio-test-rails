@@ -12,15 +12,15 @@ class Api::V1::CommentsController < ApplicationController
     if comment.save
       render json: comment
     else
-      render json: '作成に失敗しました'
+      render json: { data: '作成に失敗しました'}
     end
   end
 
   def destroy
     if @comment.destroy
-      render json: '投稿を削除しました'
+      render json: { data: '投稿を削除しました' }
     else
-      render json: '削除に失敗しました'
+      render json: { data: '削除に失敗しました' }
     end
   end
 
