@@ -22,6 +22,7 @@ class Api::V1::PostsController < ApplicationController
     @post.prefecture = post_params[:prefecture]
     @post.city = post_params[:city]
     @post.town = post_params[:town]
+    @post.genre = post_params[:genre]
     @post.image = post_params[:image] if post_params[:image] != ''
     @post.user_id = current_api_v1_user.id
 
@@ -47,6 +48,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def post_params
-    params.permit(:title, :body, :prefecture, :city, :town, :image)
+    params.permit(:title, :body, :prefecture, :city, :town, :genre, :image)
   end
 end
