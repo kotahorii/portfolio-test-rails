@@ -6,6 +6,10 @@ class Api::V1::PostsController < ApplicationController
     render json: posts
   end
 
+  def show
+    render json: @post
+  end
+
   def create
     post = Post.new(post_params)
     post.user_id = current_api_v1_user.id

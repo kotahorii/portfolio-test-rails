@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :posts, only: %i[index create update destroy]
+      resources :posts, only: %i[index show create update destroy]
       resources :users, only: %i[index update]
       resources :favorites, only: %i[index create destroy]
       resources :comments, only: %i[index create destroy]
