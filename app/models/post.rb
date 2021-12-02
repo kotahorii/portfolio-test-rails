@@ -6,4 +6,5 @@ class Post < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :labels, dependent: :destroy
 end
