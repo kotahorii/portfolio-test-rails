@@ -8,6 +8,7 @@ class Api::V1::LabelsController < ApplicationController
 
   def create
     label = Label.new(label_params)
+    label.user_id = current_api_v1_user.id
     if label.save
       render json: label
     else

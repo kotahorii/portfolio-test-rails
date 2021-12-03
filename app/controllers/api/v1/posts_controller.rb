@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :set_post, except: %i[index create]
+  before_action :set_post, except: %i[index create fav_sort]
 
   def index
     posts = Post.all.order(created_at: 'DESC')
@@ -43,6 +43,11 @@ class Api::V1::PostsController < ApplicationController
     else
       render josn: { data: '削除に失敗しました' }
     end
+  end
+
+  def fav_sort
+    posts = Post.includes(:fav_users).sort { |a,b| b.fav_users.size <=> a.fav_users.size }
+    render json: posts
   end
 
   private

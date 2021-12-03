@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get '/posts/fav_sort', to: 'posts#fav_sort'
       resources :posts, only: %i[index show create update destroy]
       resources :users, only: %i[index update]
       resources :favorites, only: %i[index create destroy]

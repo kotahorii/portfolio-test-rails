@@ -10,5 +10,6 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :fav_posts, through: :favorites, source: :post
   has_many :rates, dependent: :destroy
 end
