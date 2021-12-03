@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :set_post, except: %i[index create fav_sort]
+  before_action :set_post, only: %i[show update destroy]
 
   def index
     posts = Post.all.order(created_at: 'DESC')
@@ -46,7 +46,12 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def fav_sort
-    posts = Post.includes(:fav_users).sort { |a,b| b.fav_users.size <=> a.fav_users.size }
+    posts = Post.includes(:fav_users).sort { |a, b| b.fav_users.size <=> a.fav_users.size }
+    render json: posts
+  end
+
+  def rate_sort
+    posts = Post.includes(:rate_users).sort { |a, b| b.rate_users.size <=> a.rate_users.size }
     render json: posts
   end
 
