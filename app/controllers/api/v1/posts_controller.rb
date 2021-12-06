@@ -61,7 +61,6 @@ class Api::V1::PostsController < ApplicationController
     array_size =-> (post) do
       post.rates.size == 0 ? 1 : post.rates.size
     end
-
     posts = Post.includes(:rates).sort { |a, b| b.rates.sum { |hash| hash[:rate] } / array_size.call(b) <=> a.rates.sum { |hash| hash[:rate] } / array_size.call(a) }
     render json: posts
   end
