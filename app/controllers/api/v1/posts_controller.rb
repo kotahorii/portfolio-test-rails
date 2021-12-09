@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :set_post, only: %i[show update destroy]
+  before_action :set_post, only: %i[show destroy]
 
   def index
     posts = Post.all.order(created_at: 'DESC')
@@ -17,25 +17,6 @@ class Api::V1::PostsController < ApplicationController
       render json: post
     else
       render json: { data: '投稿に失敗しました' }
-    end
-  end
-
-  def update
-    @post.title = post_params[:title]
-    @post.body = post_params[:body]
-    @post.prefecture = post_params[:prefecture]
-    @post.city = post_params[:city]
-    @post.town = post_params[:town]
-    @post.genre = post_params[:genre]
-    @post.lat = post_params[:lat]
-    @post.lng = post_params[:lng]
-    @post.image = post_params[:image] if post_params[:image] != ''
-    @post.user_id = current_api_v1_user.id
-
-    if @post.save
-      render json: @post
-    else
-      render json: { data: '更新に失敗しました' }
     end
   end
 
@@ -72,6 +53,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def post_params
-    params.permit(:title, :body, :prefecture, :city, :town, :genre, :image, :lat, :lng)
+    params.permit(:title, :body, :prefecture, :city, :town, :image, :lat, :lng)
   end
 end
