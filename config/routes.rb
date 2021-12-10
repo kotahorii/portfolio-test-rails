@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get '/posts/fav_sort', to: 'posts#fav_sort'
       get '/posts/rate_sort', to: 'posts#rate_sort'
       get '/posts/rate_ave', to: 'posts#rate_ave'
-      resources :posts, only: %i[index show create destroy]
+      resources :posts, only: %i[index show create update destroy]
       resources :users, only: %i[index update]
       resources :favorites, only: %i[index create destroy]
       resources :comments, only: %i[index create destroy]
